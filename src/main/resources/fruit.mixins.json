@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "abyssalmc.fruit.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"SoundCancel"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
