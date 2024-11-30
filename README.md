@@ -1,6 +1,6 @@
 # Fruitbridge by AbyssalMC
 ### **Fruitbridging might be more sophisticated than you think...**
-Modrinth download: [Fruitbridge Mod]([https://github.com/abyssalmc/Fruitbridge](https://modrinth.com/mod/fruitbridge))](https://modrinth.com/mod/fruitbridge)
+Modrinth download: [Fruitbridge Mod](https://modrinth.com/mod/fruitbridge)
 | Official discord: [Fruitbridging Tierlists Discord](https://discord.gg/3bKzShSs6r)
 
 This mod provides many fruitbridging utilities from ranked methods to the distance leaderboard to casual play.
