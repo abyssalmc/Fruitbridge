@@ -21,20 +21,10 @@ public class slot {
     public static boolean autohotkeyenabled = false;
     public static int[] slotArray;
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        dispatcher.register(CommandManager.literal("switchslot").executes(slot::switchslot));
-
         dispatcher.register(CommandManager.literal("autohotkey").then(CommandManager.literal("set").then(CommandManager.argument("hotkeys", StringArgumentType.string()).executes(slot::autoHotkey))));
         dispatcher.register(CommandManager.literal("autohotkey").then(CommandManager.literal("stop").executes(slot::stopHotkey)));
     }
 
-    private static int switchslot(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        ServerPlayerEntity p = context.getSource().getPlayer();
-        p.getInventory().selectedSlot = 2;
-
-        p.networkHandler.sendPacket(new UpdateSelectedSlotS2CPacket(2));
-
-        return 1;
-    }
 
     private static int autoHotkey(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         hotkeystring = StringArgumentType.getString(context, "hotkeys");
