@@ -1,10 +1,10 @@
 package abyssalmc.fruit;
 
 import abyssalmc.GlobalDataHandler;
-import abyssalmc.command.mapgen;
-import abyssalmc.command.metronome;
-import abyssalmc.command.mmt;
-import abyssalmc.command.slot;
+import abyssalmc.fruit.command.mapgen;
+import abyssalmc.fruit.command.metronome;
+import abyssalmc.fruit.command.mmt;
+import abyssalmc.fruit.command.slot;
 import abyssalmc.fruit.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 
@@ -33,11 +33,11 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import static abyssalmc.command.metronome.periodArray;
-import static abyssalmc.command.metronome.startMetro;
-import static abyssalmc.command.mmt.*;
-import static abyssalmc.command.slot.autohotkeyenabled;
-import static abyssalmc.command.slot.slotArray;
+import static abyssalmc.fruit.command.metronome.periodArray;
+import static abyssalmc.fruit.command.metronome.startMetro;
+import static abyssalmc.fruit.command.mmt.*;
+import static abyssalmc.fruit.command.slot.autohotkeyenabled;
+import static abyssalmc.fruit.command.slot.slotArray;
 import static java.lang.Math.floor;
 
 
