@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "fruit",
-	"version": "1.0",
+	"version": "1.2",
 	"name": "Fruitbridge",
 	"description": "Competitive fruitbridging utils",
 	"authors": [
@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/abyssalmc/Fruitbridge"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/fruit/icon.png",
