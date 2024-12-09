@@ -25,13 +25,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameMode;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static abyssalmc.fruit.command.metronome.periodArray;
 import static abyssalmc.fruit.command.metronome.startMetro;
@@ -66,19 +67,38 @@ public class Fruit implements ModInitializer {
 
 	public static boolean lastLanded = false;
 
+	private double lastTickTime = 0;
+	public static List<Double> tickavg = new ArrayList<>(){};
+
+	public static boolean isTas = false;
+	public static boolean isAhk = false;
+	public static boolean isMmt = false;
+
+
+
 	public static double calculateAverage(List<Double> doubleList) {
 		if (doubleList.isEmpty()) {
 			throw new IllegalArgumentException("List is empty, cannot calculate average.");
 		}
 
-		// Sum up all elements in the list
 		double sum = 0;
 		for (double num : doubleList) {
 			sum += num;
 		}
 
-		// Calculate and return the average
 		return sum / doubleList.size();
+	}
+
+	public static double thresholdTest(List<Double> doubleList) {
+		if (doubleList.isEmpty()) {
+			throw new IllegalArgumentException("List is empty, cannot calculate average.");
+		}
+		double flag = 0;
+		for (double num : doubleList) {
+			if (num > 50)
+			flag++;
+		}
+		return flag;
 	}
 
 
@@ -96,9 +116,30 @@ public class Fruit implements ModInitializer {
 
 		MinecraftClient mc = MinecraftClient.getInstance();
 
+
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			PlayerEntity p = mc.player;
 			if (p != null) {
+				// INDICATORS
+				double currentTime = System.currentTimeMillis();
+				if (lastTickTime != 0) {
+					if (tickavg != null){
+						double tickDuration = currentTime - lastTickTime;
+						if (!(tickavg.size() < 10)) {
+							tickavg.remove(0);
+						}
+						tickavg.add(tickDuration);
+						if (calculateAverage(tickavg) >= 54 && thresholdTest(tickavg) > 4){
+							isTas = true;
+						} else {
+							isTas = false;
+						}
+					}
+				}
+				lastTickTime = currentTime;
+				if (autohotkeyenabled){ isAhk = true; } else { isAhk = false; }
+				if (momentumthreshold != 0.003){ isMmt = true; } else { isMmt = false; }
+
 				// ACTIVE BLOCK
 				if (p.getMainHandStack().getItem() instanceof BlockItem){
 					activeblock = p.getMainHandStack().getItem();

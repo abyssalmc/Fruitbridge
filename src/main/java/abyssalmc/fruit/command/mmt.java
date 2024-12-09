@@ -53,7 +53,7 @@ public class mmt {
         dispatcher.register(CommandManager.literal("pb").then(CommandManager.literal("session").then(CommandManager.literal("write").then(CommandManager.argument("new pb", IntegerArgumentType.integer()).executes(mmt::psw)))));
         dispatcher.register(CommandManager.literal("pb").then(CommandManager.literal("local").then(CommandManager.literal("write").then(CommandManager.argument("new pb", IntegerArgumentType.integer()).executes(mmt::plw)))));
 
-        //dispatcher.register(CommandManager.literal("text").then(CommandManager.argument("textx", IntegerArgumentType.integer()).then(CommandManager.argument("texty", IntegerArgumentType.integer()).then(CommandManager.argument("textstring", StringArgumentType.string()).executes(mmt::text)))));
+        dispatcher.register(CommandManager.literal("text").then(CommandManager.argument("textx", IntegerArgumentType.integer()).then(CommandManager.argument("texty", IntegerArgumentType.integer()).then(CommandManager.argument("textstring", StringArgumentType.string()).executes(mmt::text)))));
     }
 
     public static double momentumthreshold = 0.003;
