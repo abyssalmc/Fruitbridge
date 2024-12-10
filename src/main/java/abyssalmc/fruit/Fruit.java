@@ -74,8 +74,6 @@ public class Fruit implements ModInitializer {
 	public static boolean isAhk = false;
 	public static boolean isMmt = false;
 
-
-
 	public static double calculateAverage(List<Double> doubleList) {
 		if (doubleList.isEmpty()) {
 			throw new IllegalArgumentException("List is empty, cannot calculate average.");
@@ -100,7 +98,6 @@ public class Fruit implements ModInitializer {
 		}
 		return flag;
 	}
-
 
 	@Override
 	public void onInitialize() {
@@ -390,88 +387,42 @@ public class Fruit implements ModInitializer {
 		});
 
 
-		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
+		HudRenderCallback.EVENT.register((context, tickDelta) -> {
 			TextRenderer textRenderer = mc.textRenderer;
-			//drawContext.drawText(textRenderer, textstring, textx, texty, 0xffffff, true);
 
-
-			// pbs4: 423-6(l-1) - 12 if session, 250/260
-			// pbs3: 583-6(l-1) - 12 if session, 340/350
-			// pbs2.5: 743-6(l-1) - 12 if session, 430/440
-			// pbs2: 903-6(l-1) - 12 if session, 520/530
-			// pbs1.83: 1063-6(l-1) - 12 if session, 610/620
-			// pbs1.67: 1223-6(l-1) - 12 if session, 700/710
-			// pbs1.5: 1383-6(l-1) - 12 if session, 790/800
-			// pbs1.33: 1543-6(l-1) - 12 if session, 880/890
-			// pbs1.17: 1703-6(l-1) - 12 if session, 970/980
-			// pbs1: 1863-6(l-1) - 12 if session, 1060/1070
-
-
-			// d4: 237-3(l-1), 225(c)/211(s) + 10
-			// d3: 317-3(l-1), 315(c)/301(s) + 10
-			// d2.5: 397-3(l-1), 405(c)/391(s) + 10
-			// d2: 477-3(l-1), 495(c)/481(s) + 10
-			// d1.83: 557-3(l-1), 585(c)/571(s) + 10
-			// d1.67: 637-3(l-1), 675(c)/661(s) + 10
-			// d1.5: 717-3(l-1), 765(c)/751(s) + 10
-			// d1.33: 797-3(l-1), 855(c)/841(s) + 10
-			// d1.17: 877-3(l-1), 945(c)/931(s) + 10
-			// d1: 957-3(l-1), 1035(c)/1021(s) + 10
-
-
-
-
-			//0 center, 1 left, 2 right
-			int dpos = 0;
 			if (GlobalDataHandler.getUtils()) {
+				if (GlobalDataHandler.getDist()) {
 
-				if (dpos == 0) {
-					int guiscale = MinecraftClient.getInstance().options.getGuiScale().getValue();
-
-					if (GlobalDataHandler.getDist()) {
-						int guiy = 0;
-						if (MinecraftClient.getInstance().interactionManager.getCurrentGameMode() != GameMode.CREATIVE){
-							guiy = -14;
-						}
-						switch (guiscale){
-							case 3:
-								drawContext.drawText(textRenderer, "" + distance, 317 - 3 * ((String.valueOf(distance).length() - 1)), 325+guiy, 0xffffff, true);
-								break;
-							case 2:
-								drawContext.drawText(textRenderer, "" + distance, 477 - 3 * ((String.valueOf(distance).length() - 1)), 505+guiy, 0xffffff, true);
-								break;
-							case 1:
-								drawContext.drawText(textRenderer, "" + distance, 957 - 3 * ((String.valueOf(distance).length() - 1)), 1045+guiy, 0xffffff, true);
-								break;
-							default:
-								drawContext.drawText(textRenderer, "" + distance, 237 - 3 * ((String.valueOf(distance).length() - 1)), 235+guiy, 0xffffff, true);
-								break;
-						}
+					int guiy = 0;
+					if (MinecraftClient.getInstance().interactionManager.getCurrentGameMode() != GameMode.CREATIVE){
+						guiy = -14;
 					}
-					if (GlobalDataHandler.getPbHud()) {
-						switch (guiscale){
-							case 3:
-								drawContext.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 583 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 340, 0xffffff, true);
-								drawContext.drawText(textRenderer, "Session PB: §e" + sessionpb, 572 - 6 * ((String.valueOf(sessionpb).length() - 1)), 350, 0xffffff, true);
-								break;
-							case 2:
-								drawContext.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 903 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 520, 0xffffff, true);
-								drawContext.drawText(textRenderer, "Session PB: §e" + sessionpb, 892 - 6 * ((String.valueOf(sessionpb).length() - 1)), 530, 0xffffff, true);
-								break;
-							case 1:
-								drawContext.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 1863 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 1060, 0xffffff, true);
-								drawContext.drawText(textRenderer, "Session PB: §e" + sessionpb, 1852 - 6 * ((String.valueOf(sessionpb).length() - 1)), 1070, 0xffffff, true);
-								break;
-							default:
-								drawContext.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 423 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 250, 0xffffff, true);
-								drawContext.drawText(textRenderer, "Session PB: §e" + sessionpb, 412 - 6 * ((String.valueOf(sessionpb).length() - 1)), 260, 0xffffff, true);
-								break;
-						}
+
+					//context.drawItem(mc.player.getMainHandStack(), context.getScaledWindowWidth() / 2 - 9, context.getScaledWindowHeight() - 40 + guiy);
+				}
+
+				if (GlobalDataHandler.getPbHud()) {
+					int guiscale = mc.options.getGuiScale().getValue();
+					switch (guiscale) {
+						case 3:
+							context.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 583 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 340, 0xffffff, true);
+							context.drawText(textRenderer, "Session PB: §e" + sessionpb, 572 - 6 * ((String.valueOf(sessionpb).length() - 1)), 350, 0xffffff, true);
+							break;
+						case 2:
+							context.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 903 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 520, 0xffffff, true);
+							context.drawText(textRenderer, "Session PB: §e" + sessionpb, 892 - 6 * ((String.valueOf(sessionpb).length() - 1)), 530, 0xffffff, true);
+							break;
+						case 1:
+							context.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 1863 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 1060, 0xffffff, true);
+							context.drawText(textRenderer, "Session PB: §e" + sessionpb, 1852 - 6 * ((String.valueOf(sessionpb).length() - 1)), 1070, 0xffffff, true);
+							break;
+						default:
+							context.drawText(textRenderer, "Local PB: §e" + GlobalDataHandler.getPb(), 423 - 6 * ((String.valueOf(GlobalDataHandler.getPb()).length() - 1)), 250, 0xffffff, true);
+							context.drawText(textRenderer, "Session PB: §e" + sessionpb, 412 - 6 * ((String.valueOf(sessionpb).length() - 1)), 260, 0xffffff, true);
+							break;
 					}
 				}
 			}
 		});
-
-
 	}
 }
