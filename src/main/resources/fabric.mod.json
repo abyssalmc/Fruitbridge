@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "fruit",
-	"version": "1.4",
+	"version": "1.5",
 	"name": "Fruitbridge",
 	"description": "Competitive fruitbridging utils",
 	"authors": [
