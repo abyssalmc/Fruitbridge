@@ -53,7 +53,11 @@ public class mmt {
         dispatcher.register(CommandManager.literal("pb").then(CommandManager.literal("session").then(CommandManager.literal("write").then(CommandManager.argument("new pb", IntegerArgumentType.integer()).executes(mmt::psw)))));
         dispatcher.register(CommandManager.literal("pb").then(CommandManager.literal("local").then(CommandManager.literal("write").then(CommandManager.argument("new pb", IntegerArgumentType.integer()).executes(mmt::plw)))));
 
-        dispatcher.register(CommandManager.literal("text").then(CommandManager.argument("textx", IntegerArgumentType.integer()).then(CommandManager.argument("texty", IntegerArgumentType.integer()).then(CommandManager.argument("textstring", StringArgumentType.string()).executes(mmt::text)))));
+        //dispatcher.register(CommandManager.literal("text").then(CommandManager.argument("textx", IntegerArgumentType.integer()).then(CommandManager.argument("texty", IntegerArgumentType.integer()).then(CommandManager.argument("textstring", StringArgumentType.string()).executes(mmt::text)))));
+
+        dispatcher.register(CommandManager.literal("autosave").then(CommandManager.literal("enable").executes(mmt::enableautosave)));
+        dispatcher.register(CommandManager.literal("autosave").then(CommandManager.literal("disable").executes(mmt::disableautosave)));
+
     }
 
     public static double momentumthreshold = 0.003;
@@ -150,6 +154,17 @@ public class mmt {
     private static int plw(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         GlobalDataHandler.setPb(IntegerArgumentType.getInteger(context, "new pb"));
         context.getSource().sendMessage(Text.literal("Local PB updated to §e" + GlobalDataHandler.getPb() + "§r blocks."));
+        return 1;
+    }
+
+    private static int enableautosave(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        GlobalDataHandler.setAutosaves(true);
+        context.getSource().sendMessage(Text.literal("§aAutosaving is now set to enabled."));
+        return 1;
+    }
+    private static int disableautosave(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        GlobalDataHandler.setAutosaves(false);
+        context.getSource().sendMessage(Text.literal("§aAutosaving is now set to disabled."));
         return 1;
     }
 }

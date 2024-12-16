@@ -56,15 +56,12 @@ public class hotbar {
 
             if (Fruit.isTas) {
                 context.drawTexture(itas, context.getScaledWindowWidth() / 2 - 72 - 1 + p.getInventory().selectedSlot * 20, context.getScaledWindowHeight() - 2 - 1, 0, 0, 1, 1, 1, 1);
-                context.drawTexture(indicator, context.getScaledWindowWidth() / 2 - 13, context.getScaledWindowHeight() - 4, 0, 0, 1, 1, 1, 1);
             }
             if (Fruit.isAhk) {
                 context.drawTexture(itas, context.getScaledWindowWidth() / 2 - 71 - 1 + p.getInventory().selectedSlot * 20, context.getScaledWindowHeight() - 2 - 1, 0, 0, 1, 1, 1, 1);
-                context.drawTexture(indicator, context.getScaledWindowWidth() / 2 - 12, context.getScaledWindowHeight() - 4, 0, 0, 1, 1, 1, 1);
             }
             if (Fruit.isMmt) {
                 context.drawTexture(itas, context.getScaledWindowWidth() / 2 - 71 - 1 + p.getInventory().selectedSlot * 20, context.getScaledWindowHeight() - 3 - 1, 0, 0, 1, 1, 1, 1);
-                context.drawTexture(indicator, context.getScaledWindowWidth() / 2 - 11, context.getScaledWindowHeight() - 4, 0, 0, 1, 1, 1, 1);
             }
         }
         RenderSystem.disableBlend();

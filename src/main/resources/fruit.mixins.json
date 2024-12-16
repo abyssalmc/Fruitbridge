@@ -3,7 +3,7 @@
 	"package": "abyssalmc.fruit.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"SoundCancel", "hotbar"
+		"SoundCancel", "hotbar", "AutosaveDisabler"
 	],
 	"injectors": {
 		"defaultRequire": 1

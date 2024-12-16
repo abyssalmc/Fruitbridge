@@ -17,6 +17,8 @@ public class GlobalDataHandler {
 
     private static boolean customplacesounds = false;
 
+    private static boolean autosaves = true;
+
     // Load data from file
     public static void loadGlobalData() {
         try {
@@ -27,6 +29,7 @@ public class GlobalDataHandler {
                 pbhud = nbt.getBoolean("centre");
                 distancehud = nbt.getBoolean("dist");
                 customplacesounds = nbt.getBoolean("cps");
+                autosaves = nbt.getBoolean("autosaves");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,6 +47,7 @@ public class GlobalDataHandler {
             nbt.putBoolean("centre", pbhud);
             nbt.putBoolean("dist", distancehud);
             nbt.putBoolean("cps", customplacesounds);
+            nbt.putBoolean("autosaves", autosaves);
 
             NbtIo.write(nbt, GLOBAL_DATA_PATH);
         } catch (IOException e) {
@@ -57,10 +61,12 @@ public class GlobalDataHandler {
     public static boolean getPbHud() { return pbhud; }
     public static boolean getDist() { return distancehud; }
     public static boolean getPlaceSounds() { return customplacesounds; }
+    public static boolean getAutosaves() { return autosaves; }
 
     public static void setPb(int newpb) { pb = newpb; }
     public static void setUtils(boolean utils) { distanceutils = utils; }
     public static void setPbHud(boolean centre) { pbhud = centre; }
     public static void setDist(boolean dist) { distancehud = dist; }
     public static void setPlaceSounds(boolean cbs) { customplacesounds = cbs; }
+    public static void setAutosaves(boolean autosave) { autosaves = autosave; }
 }
